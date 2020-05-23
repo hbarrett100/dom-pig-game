@@ -15,35 +15,33 @@ var scores, roundScore, activePlayer, gamePlaying;
 init();
 
 //anonymous function - can only be used in this context
-document.querySelector('.btn-roll').addEventListener('click', function() {
+document.querySelector('.btn-roll').addEventListener('click', function () {
 
     if (gamePlaying) {
-            // 1. random number
-    dice = Math.floor(Math.random() * 6) + 1;
+        // 1. random number
+        var dice = Math.floor(Math.random() * 6) + 1;
 
-    // 2. Display result
-    var diceDOM = document.querySelector('.dice');
-    diceDOM.style.display = 'block';
+        // 2. Display result
+        var diceDOM = document.querySelector('.dice');
+        diceDOM.style.display = 'block';
 
-    //change image based on random number rolled
-    diceDOM.src = 'dice-' + dice + '.png';
+        //change image based on random number rolled
+        diceDOM.src = 'dice-' + dice + '.png';
 
-    // 3. Update the round score IF the rolled number was NOT a 1
-    if (dice !== 1) {
-        //add score
-        roundScore += dice;
-        document.querySelector('#current-' + activePlayer).textContent = roundScore;
-    } else {
-        // next player
-        nextPlayer();
+        // 3. Update the round score IF the rolled number was NOT a 1
+        if (dice !== 1) {
+            //add score
+            roundScore += dice;
+            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        } else {
+            // next player
+            nextPlayer();
+        }
     }
-
-    }
-
 })
 
-document.querySelector('.btn-hold').addEventListener('click', function()  {
-    
+document.querySelector('.btn-hold').addEventListener('click', function () {
+
     if (gamePlaying) {
         // add CURRENT score to GLOBAL score
         scores[activePlayer] += roundScore;
@@ -62,8 +60,6 @@ document.querySelector('.btn-hold').addEventListener('click', function()  {
             nextPlayer();
         }
     }
-    
-
 })
 
 function nextPlayer() {
@@ -84,9 +80,10 @@ document.querySelector('.btn-new').addEventListener('click', init);
 
 // create init function to initialise game and new game
 function init() {
-    scores = [0,0];
+    scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
+    gamePlaying = true;
 
     document.querySelector('.dice').style.display = 'none';
 
